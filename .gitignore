@@ -1,0 +1,3 @@
+machine.*.log
+grep_output.txt
+server/version_num

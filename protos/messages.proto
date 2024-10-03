@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package messages;
+
+option go_package = "MP2/protos;messages";
+import "google/protobuf/timestamp.proto";
+// import "google/protobuf/empty.proto";
+service LogQueryService {
+    rpc GetLogs (GrepRequest) returns (GrepReply);
+}
+
+message GrepRequest {
+    int32   idx      = 1;  
+    string  req      = 2;
+}
+
+message GrepReply {
+    string  grep_output = 5;
+    int32   idx      = 2;
+    string  err      = 3;
+    bool    is_success = 4;
+    int32   match_count = 6;
+}
+
+// ==========================================================================================
+
+message NodeInfo {
+    string hostname = 1;
+    string port = 2;
+    string state = 3;
+    int32 incarnation = 4;
+    google.protobuf.Timestamp timestamp = 5;
+}
+
+
+message MembershipPush {
+    string header = 1;
+    string source_host = 2;
+    string source_port = 3;
+    int32 incarnation = 4;
+    bool toggle_sus_flag = 5;
+    int32 toggle_sus_version = 6; 
+    map<string, NodeInfo> servers = 7; // Map of ip_addr -> NodeInfo
+}
+
+message MembershipAck {
+    string header = 1;
+    string hostname = 2;
+    string port = 3;
+    int32 incarnation = 4;
+    bool toggle_sus_flag = 5;
+    int32 toggle_sus_version = 6; 
+    // This map will reflect membership list of the node that replies
+    map<string, NodeInfo> servers = 7; // Map of ip_addr -> NodeInfo. 
+}
