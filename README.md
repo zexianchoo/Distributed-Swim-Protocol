@@ -24,6 +24,7 @@ There is a tmux script provided for ease of running multiple servers.
 ```
 bash tmux.sh
 ```
+# Stdin commands:
 ----
 
 There are `stdin` commands that you can run after the server is connected and started up:
