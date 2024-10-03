@@ -1,5 +1,6 @@
 # SWIM Membership Protocol Distributed System
 Distributed server connected with a membership list. Built on the SWIM protocol, with ping-ack as well as ping-ack + suspicion.
+Built entirely in golang, and grpc.
 
 
 # Setup
